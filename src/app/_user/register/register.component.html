@@ -1,0 +1,54 @@
+<section class="bg-gray-100 h-screen flex justify-center items-center">
+    <div class="bg-white p-8 rounded shadow-md w-[40%] mt-4">
+        <h2 class="text-2xl font-semibold mb-6 text-center bg-gray-100 p-2 text-gray-600">Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="flex gap-x-2">
+
+                <div class="mb-4">
+                    <label for="firstName" class="block text-gray-600 font-medium">First Name</label>
+                    <input type="text" id="firstName" formControlName="firstName"
+                        class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none">
+                    <small *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)" class="text-red-500 mt-1">* First name is required</small>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="lastName" class="block text-gray-600 font-medium">Last Name</label>
+                    <input type="text" id="lastName" formControlName="lastName"
+                        class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none">
+                    <small *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)" class="text-red-500 mt-1">* Last Name is required</small>
+                </div>
+
+            </div>
+            
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-600 font-medium">Email</label>
+                <input type="email" id="email" formControlName="email"
+                    class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none">
+                <small *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="text-red-500 mt-1">* Email is required and must be valid</small>
+            </div>
+
+            <div class="flex gap-x-2">
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-600 font-medium">Password</label>
+                    <input type="password" id="password" formControlName="password"
+                        class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none">
+                    <small *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="text-red-500 mt-1">* Password is required and must be at least 6 characters.</small>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="confirmPassword" class="block text-gray-600 font-medium">Confirm Password</label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                        class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none ">
+                    <small *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="text-red-500 mt-1">* Confirm password is required.</small>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="registerForm.invalid"
+                class="w-full bg-blue-500 text-white rounded py-2 px-4 hover:bg-blue-600 focus:outline-none">Register</button>
+        </form>
+        <small class="text-gray-600 mt-4">Already have an account? 
+            <a routerLink="/user/login" class="text-blue-500 hover:underline">Login</a></small>
+    </div>
+</section>
