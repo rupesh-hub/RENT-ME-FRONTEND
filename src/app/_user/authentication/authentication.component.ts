@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -10,9 +11,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AuthenticationComponent {
 
-  // protected errors[]:any=[];
+  protected errors:any=[];
 
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService, private _router:Router) { }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
@@ -21,11 +22,12 @@ export class AuthenticationComponent {
       this._userService
         .authenticate(form.value)
         .subscribe((response: any) => {
-          console.log(response)
+          console.log(response);
+          this._router.navigate(["/"]);
           
         },(error:HttpErrorResponse)=>{
-          // this.error = error.error.error
-          // console.log(this.error)
+          this.errors = [];
+          this.errors.push(error.error.error)
         })
 
     } else {

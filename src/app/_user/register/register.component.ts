@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  protected errors:any=[];
   constructor(private fb: FormBuilder, private _userService: UserService, private _router:Router) { }
 
   registerForm: FormGroup = this.fb.group({
@@ -32,7 +33,7 @@ export class RegisterComponent {
         .subscribe((response: any) => {
           this._router.navigate(["/user/login"]);
         }, (error: HttpErrorResponse) => {
-          console.log(error)
+          this.errors = error.error.errors;
         })
     } else {
       // Handle invalid form

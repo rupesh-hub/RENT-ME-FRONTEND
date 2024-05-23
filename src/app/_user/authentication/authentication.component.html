@@ -3,9 +3,13 @@
         <h2 class="text-2xl text-gray-600 font-bold mb-6 text-center bg-gray-100 p-2 rounded-md">Login</h2>
 
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <div>
-                
-            </div>
+
+            <div *ngIf="errors.length > 0" class="bg-red-100 text-center p-1 mb-2 border border-red-200 rounded-sm">
+                <ng-container *ngFor="let error of errors">
+                    <small class="text-red-500 font-semibold">{{ error }}</small>
+                </ng-container>
+            </div>            
+
             <div class="mb-4">
                 <label for="username" class="block text-gray-600 font-medium">Username</label>
                 <input type="text" id="username" name="username" ngModel class="w-full border border-gray-300 rounded mt-1 py-2 px-3 focus:outline-none" placeholder="Enter your username" required>
